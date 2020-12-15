@@ -1,0 +1,108 @@
+import 'package:flutter/material.dart';
+void main () => runApp(EmailApp());
+
+class EmailApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Swift',
+      theme:ThemeData(primarySwatch: Colors.deepOrange),
+      home: MyHomePage(title: 'Messages '),
+
+
+    );
+  }
+}
+class MyHomePage extends StatelessWidget {
+  final String title ;
+  var photos= const [
+  {
+    'image':'im/e.jpg',
+  },
+  {
+    'image':'im/mat.jpg',
+  },
+  {
+    'image':'im/MOTM3.jpg',
+  },
+  {
+    'image':'im/X.jpg',
+  },
+  ];
+
+  var messages= const[
+
+    {
+      'subject':'D.Beckham',
+      'body':'Wanna hang out !',
+
+    },
+  {
+  'subject':'Morpheus',
+  'body':'Red pill or Blue pill ?',
+},
+    {
+      'subject':'Scott cudi',
+      'body':'Did you like the new release album ?',
+    },
+    {
+      'subject':'x',
+      'body':'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
+    },
+   ];
+  MyHomePage ({this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar (
+        title: Text(this.title),
+        centerTitle: true,
+        backgroundColor: Colors.red[400],
+      ),
+      body: ListView.separated(
+        itemCount:messages.length,
+        separatorBuilder: (context, index) => Divider(),
+        itemBuilder: (BuildContext context, int index) {
+          var message = messages[index];
+          var image = photos[index];
+          return ListTile(
+            title: Text(
+                message['subject'],
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20.0
+
+              )
+            ),
+            leading: CircleAvatar(
+              child: Image(
+                image: AssetImage(image['image']),
+              ),
+            ),
+            subtitle: Text (
+                message['body'],
+              maxLines:2,
+            ),
+
+
+          );
+        },
+      ),
+
+       floatingActionButton: FloatingActionButton(
+         onPressed:() {},
+         child: Text(
+           '+',
+           style: TextStyle(
+             fontSize: 22.0,),
+         ),
+         backgroundColor: Colors.red[400],
+
+      ),
+
+    );
+
+  }
+}
+
